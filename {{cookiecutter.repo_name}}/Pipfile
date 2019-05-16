@@ -1,0 +1,32 @@
+[[source]]
+url = "https://pypi.org/simple"
+verify_ssl = true
+name = "pypi"
+
+[[source]]
+url = "https://${PYPI_USERNAME}:${PYPI_PASSWORD}@pypi.zeel.com"
+verify_ssl = true
+name = "private"
+
+[packages]
+flask = "~=0.12.3"
+flask-cors = "~=3.0.6"
+flask-SQLAlchemy = "~=2.3.2"
+marshmallow-enum = "~=1.4.1"
+marshmallow-sqlalchemy = "~=0.14.1"
+py-postgresql = "~=1.2.1"
+sqlalchemy = "~=1.2.18"
+zeel-utils = {version = "~=1.0.1",index = "private"}
+
+
+[dev-packages]
+flake8 = "~=3.7"
+itsdangerous = "==0.24"
+pep8 = "~=1.7"
+pytest = "~=3.7"
+pytest-cov = "~=1.8.1"
+pytest-randomly = "~=2.1"
+yapf = "~=0.25"
+
+[requires]
+python_version = "3.7"
