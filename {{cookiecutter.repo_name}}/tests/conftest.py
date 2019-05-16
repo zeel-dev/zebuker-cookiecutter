@@ -1,12 +1,12 @@
 import pytest
 
-from {{cookiecutter.repo_name}} import create_app
-from {{cookiecutter.repo_name}}.models import db, User
+from {{cookiecutter.service_name}} import create_app
+from {{cookiecutter.service_name}}.models import db, User
 
 
 @pytest.fixture()
 def testapp(request):
-    app = create_app('{{cookiecutter.repo_name}}.settings.TestConfig')
+    app = create_app('{{cookiecutter.service_name}}.settings.TestConfig')
     client = app.test_client()
 
     db.app = app

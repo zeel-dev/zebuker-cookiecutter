@@ -8,11 +8,11 @@ __version__ = '{{cookiecutter.version}}'
 from flask import Flask
 from webassets.loaders import PythonLoader as PythonAssetsLoader
 
-from {{cookiecutter.repo_name}}.controllers.main import main
-from {{cookiecutter.repo_name}} import assets
-from {{cookiecutter.repo_name}}.models import db
+from {{cookiecutter.service_name}}.controllers.main import main
+from {{cookiecutter.service_name}} import assets
+from {{cookiecutter.service_name}}.models import db
 
-from {{cookiecutter.repo_name}}.extensions import (
+from {{cookiecutter.service_name}}.extensions import (
     cache,
     assets_env,
     debug_toolbar,
@@ -27,7 +27,7 @@ def create_app(object_name):
 
     Arguments:
         object_name: the python path of the config object,
-                     e.g. {{cookiecutter.repo_name}}.settings.ProdConfig
+                     e.g. {{cookiecutter.service_name}}.settings.ProdConfig
 
         env: The name of the current environment, e.g. prod or dev
     """

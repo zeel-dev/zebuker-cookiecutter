@@ -4,13 +4,13 @@ import os
 
 from flask.ext.script import Manager, Server
 from flask.ext.script.commands import ShowUrls, Clean
-from {{cookiecutter.repo_name}} import create_app
-from {{cookiecutter.repo_name}}.models import db, User
+from {{cookiecutter.service_name}} import create_app
+from {{cookiecutter.service_name}}.models import db, User
 
 # default to dev config because no one should use this in
 # production anyway
-env = os.environ.get('{{cookiecutter.repo_name|upper}}_ENV', 'dev')
-app = create_app('{{cookiecutter.repo_name}}.settings.%sConfig' % env.capitalize())
+env = os.environ.get('{{cookiecutter.service_name|upper}}_ENV', 'dev')
+app = create_app('{{cookiecutter.service_name}}.settings.%sConfig' % env.capitalize())
 
 manager = Manager(app)
 manager.add_command("server", Server())

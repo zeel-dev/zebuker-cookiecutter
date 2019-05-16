@@ -3,7 +3,7 @@
 
 import pytest
 
-from {{cookiecutter.repo_name}}.models import db, User
+from {{cookiecutter.service_name}}.models import db, User
 
 create_user = False
 

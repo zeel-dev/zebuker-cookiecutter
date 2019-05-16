@@ -22,6 +22,15 @@ pip-log.txt
 # Flake8 violation file
 violations.flake8.txt
 
+# Django stuff:
+*.log
+local_settings.py
+db.sqlite3
+
+# Flask stuff:
+instance/
+.webassets-cache
+
 # Unit test / coverage reports
 .coverage
 .tox
@@ -30,9 +39,12 @@ __pycache__
 database.db
 
 # Sphinx
+.scrapy
 docs/_build
 
-# Virtual environments
+# Environments
+.env
+.venv
 env
 env*
 

@@ -1,5 +1,4 @@
-rm -Rf webapp/
+rm -Rf zebuker-pricing/
 cookiecutter . --no-input
-pip install -r webapp/requirements.txt
-cd webapp/
+cd zebuker-pricing/
 make test

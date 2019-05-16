@@ -2,7 +2,7 @@ from flask_wtf import Form
 from wtforms import StringField, PasswordField
 from wtforms import validators
 
-from {{cookiecutter.repo_name}}.models import User
+from {{cookiecutter.service_name}}.models import User
 
 
 class LoginForm(Form):
