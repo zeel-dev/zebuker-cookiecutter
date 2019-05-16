@@ -1,0 +1,7 @@
+FROM lambci/lambda:build-python3.6
+# Set env variables (use .venv and PYPI credentials)
+ENV PIPENV_VENV_IN_PROJECT 1
+# Copy Pipfile and Pipfile.lock
+COPY . /var/task
+# Install dependencies
+RUN bash install_dependencies.sh --de

@@ -1,0 +1,22 @@
+sudo: required
+dist: trusty
+language: python
+python:
+- '3.6'
+services:
+  - docker
+before_install:
+  - sudo apt-get update
+  - pip install s3pypi cookiecutter
+  - docker-compose build
+script:
+  - './ci.sh'
+  - docker-compose run {{ cookiecutter.service_name  }} bash test.sh
+deploy:
+  provider: script
+  script: >-
+    mkdir ~/.aws &&
+    touch ~/.aws/credentials && echo "[zeel/PyPICloud]\naws_access_key_id = $PYPI_BUCKET_ACCESS_KEY_ID\naws_secret_access_key = $PYPI_BUCKET_SECRET_ACCESS_KEY" > ~/.aws/credentials &&
+    s3pypi --bucket pypi.zeel.com --profile zeel/PyPICloud
+  on:
+    branch: master
