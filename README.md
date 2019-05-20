@@ -2,12 +2,12 @@
 
 This is a template for Zebuker services 
 
-# Initialize
+# Initialize cookiecutter
 
 Steps to template a repo
 1) `brew install cookiecutter`
 2) `cookiecutter https://github.com/zeel-dev/zebuker-cookiecutter.git`
-3) Answer template prompts with team decided conventions
+3) Answer template prompts with team decided conventions - press enter for defaults
 4) Create a git repo and initialize project to it
 
 # References

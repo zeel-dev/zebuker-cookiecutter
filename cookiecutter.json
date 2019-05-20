@@ -1,8 +1,8 @@
 {
-  "service_name": "zebuker-pricing|capitalize",
+  "service_name": "zebuker-pricing",
   "service_slug": "{{ cookiecutter.service_name|lower|replace('zebuker-', '') }}",
-  "service_description": "Short description of what the service manages.",
-  "backend_cors_origins": "https://localhost, https://localhost:3000, https://localhost:8080, http://local.dockertoolbox.zebuker.com, http://localhost.zebuker.com",
+  "service_description": "Short description of what the service manages",
+  "backend_cors_origins": "https://localhost, https://localhost:3000, http://localhost.zebuker.com - enter if not specified yet",
   "database": "zebuker-db",
 
   "docker_image_prefix": "press enter if not specified",

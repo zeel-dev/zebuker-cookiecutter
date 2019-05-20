@@ -1,7 +1,7 @@
 swagger: '3.0'
 info:
   version: 1.0.0-alpha
-  title: '{{cookiecutter.service_name|capitalize}}'
+  title: '{{cookiecutter.service_name|replace('-', ' ')|capitalize}}'
   description: >-
     '{{cookiecutter.service_description}}'
   termsOfService: https://www.zeel.com/terms
