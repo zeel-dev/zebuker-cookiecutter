@@ -1,0 +1,11 @@
+swagger: '3.0'
+info:
+  version: 1.0.0-alpha
+  title: '{{cookiecutter.service_name|capitalize}}'
+  description: >-
+    '{{cookiecutter.service_description}}'
+  termsOfService: https://www.zeel.com/terms
+  contact:
+    name: Zeel Networks, Inc.
+    url: https://www.zeel.com
+    email: hosting@zeel.com
