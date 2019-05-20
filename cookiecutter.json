@@ -5,8 +5,8 @@
   "backend_cors_origins": "https://localhost, https://localhost:3000, https://localhost:8080, http://local.dockertoolbox.zebuker.com, http://localhost.zebuker.com",
   "database": "zebuker-db",
 
-  "docker_image_prefix": "",
-  "docker_image_backend": "{{cookiecutter.docker_image_prefix}}backend",
+  "docker_image_prefix": "press enter if not specified",
+  "docker_image_backend": "press enter if not specified",
 
   "_copy_without_render": [],
   "version": "1.0"
