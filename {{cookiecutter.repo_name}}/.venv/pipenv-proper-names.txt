@@ -1,8 +1,0 @@
-Flask
-Flask-Assets
-Flask-Cache
-Flask-DebugToolbar
-Flask-Login
-Flask-SQLAlchemy
-Flask-Script
-Flask-WTF
