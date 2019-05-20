@@ -1,14 +1,14 @@
 version: "3"
 services:
-  "{{ cookiecutter.service_name }}":
+  '{{ cookiecutter.service_name }}':
     build:
       context: .
-    command: bash test.sh
+    command: echo 'Hello {{ cookiecutter.service_slug }}'
     environment:
       - PIPENV_VENV_IN_PROJECT=1
       - PYPI_USERNAME=$PYPI_USERNAME
       - PYPI_PASSWORD=$PYPI_PASSWORD
-    image: "{{ cookiecutter.service_name }}"
+    image: '{{ cookiecutter.service_name }}'
     volumes:
       - .:/var/task
       - venv-{{ cookiecutter.database }}:/var/task/.venv/

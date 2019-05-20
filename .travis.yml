@@ -6,4 +6,5 @@ python:
   - "pypy"
 install:
   - pip install cookiecutter
+  - pip install s3pypi
 script: "./ci.sh"

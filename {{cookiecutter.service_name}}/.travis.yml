@@ -7,11 +7,9 @@ services:
   - docker
 before_install:
   - sudo apt-get update
-  - pip install s3pypi cookiecutter
   - docker-compose build
 script:
-  - './ci.sh'
-  - docker-compose run {{ cookiecutter.service_name  }} bash test.sh
+  - docker-compose run '{{ cookiecutter.service_name }}'
 deploy:
   provider: script
   script: >-

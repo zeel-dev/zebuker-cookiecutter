@@ -4,4 +4,4 @@ ENV PIPENV_VENV_IN_PROJECT 1
 # Copy Pipfile and Pipfile.lock
 COPY . /var/task
 # Install dependencies
-RUN bash install_dependencies.sh --de
+RUN pipenv install --dev

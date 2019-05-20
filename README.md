@@ -1,10 +1,19 @@
 # Zebuker Cookiecutter
 
-[![Build Status](https://travis-ci.org/JackStouffer/Flask-Foundation.png)](https://travis-ci.org/JackStouffer/Flask-Foundation)
+This is a template for Zebuker services 
 
+# Initialize
+
+Steps to template a repo
+1) `brew install cookiecutter`
+2) `cookiecutter https://github.com/zeel-dev/zebuker-cookiecutter.git`
+3) Answer template prompts with team decided conventions
+4) Create a git repo and initialize project to it
+
+# References
 This is the Cookiecutter fork of [Flask Foundation](https://github.com/JackStouffer/Flask-Foundation).
 
-Documentation is located at [https://jackstouffer.github.io/Flask-Foundation/](https://jackstouffer.github.io/Flask-Foundation/)
+Reference documentation is located at [https://jackstouffer.github.io/Flask-Foundation/](https://jackstouffer.github.io/Flask-Foundation/)
 
 Flask Foundation is a solid foundation for flask applications, built with best practices, that you can easily construct your website/webapp off of. Flask Foundation is different from most Flask frameworks as it does not assume anything about your development or production environments. Flask Foundation is platform agnostic in this respect.
 

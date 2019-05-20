@@ -10,8 +10,10 @@ name = "private"
 
 [packages]
 flask = "~=0.12.3"
+flask-assets = "~=0.10"
 flask-cors = "~=3.0.6"
-flask-SQLAlchemy = "~=2.3.2"
+flask-migrate = "~=2.4.0"
+flask-sqlalchemy = "~=2.3.2"
 marshmallow-enum = "~=1.4.1"
 marshmallow-sqlalchemy = "~=0.14.1"
 py-postgresql = "~=1.2.1"
