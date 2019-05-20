@@ -8,7 +8,12 @@ Steps to template a repo
 1) `brew install cookiecutter`
 2) `cookiecutter https://github.com/zeel-dev/zebuker-cookiecutter.git`
 3) Answer template prompts with team decided conventions - press enter for defaults
-4) Create a git repo and initialize project to it
+4) Create a git repo with the project name being {{cookiecutter.service_name}} and initialize project to it
+    - `git init` 
+    - `git remote add origin https://github.com/zeel-dev/{{cookiecutter.service_name}}.git`
+    - `git add .`
+    - `git commit -m "initial skeleton`
+    - `git push -u origin master`
 
 # References
 This is the Cookiecutter fork of [Flask Foundation](https://github.com/JackStouffer/Flask-Foundation).
