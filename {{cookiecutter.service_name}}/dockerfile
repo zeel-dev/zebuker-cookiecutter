@@ -1,5 +1,11 @@
-FROM lambci/lambda:build-python3.6
+FROM python:3.7.3
+RUN pip install pipenv
+WORKDIR /var/task
 # Set env variables (use .venv and PYPI credentials)
+ARG PYPI_USERNAME
+ENV PYPI_USERNAME ${PYPI_USERNAME}
+ARG PYPI_PASSWORD
+ENV PYPI_PASSWORD ${PYPI_PASSWORD}
 ENV PIPENV_VENV_IN_PROJECT 1
 # Copy Pipfile and Pipfile.lock
 COPY . /var/task

@@ -31,4 +31,4 @@ pytest-randomly = "~=2.1"
 yapf = "~=0.25"
 
 [requires]
-python_version = "3.7"
+python_version = "3.7.3"

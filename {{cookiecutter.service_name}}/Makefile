@@ -15,7 +15,7 @@ env:
 	make deps
 
 deps:
-	pip install -r requirements.txt
+	pipenv install --dev
 
 clean:
 	python manage.py clean

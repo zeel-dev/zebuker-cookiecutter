@@ -1,7 +1,10 @@
 version: "3"
 services:
-  '{{ cookiecutter.service_name }}':
+  {{ cookiecutter.service_name }}:
     build:
+      args:
+        - PYPI_USERNAME=$PYPI_USERNAME
+        - PYPI_PASSWORD=$PYPI_PASSWORD
       context: .
     command: echo 'Hello {{ cookiecutter.service_slug }}'
     environment:
@@ -11,5 +14,3 @@ services:
     image: '{{ cookiecutter.service_name }}'
     volumes:
       - .:/var/task
-      - venv-{{ cookiecutter.database }}:/var/task/.venv/
-volumes: venv-{{ cookiecutter.database }}:
