@@ -1,6 +1,3 @@
-#!/bin/bash
+#/bin/bash
 
-while true; do
-sleep 5
-done
-echo "here"
+pipenv run python3 run.py # create db, run flask app

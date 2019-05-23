@@ -1,16 +1,40 @@
-version: "3"
+version: '3'
+networks:
+  zebuker:
 services:
-  {{ cookiecutter.service_name }}:
+  db:
+    image: postgres
+    restart: always
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root
+      - POSTGRES_DB=zebuker_pricing
+    ports:
+      - '5432:5432'
+    networks:
+      - zebuker
+  {{ cookiecutter.service_slug }}-app:
+        command: bash run.sh
+    environment:
+      - PIPENV_VENV_IN_PROJECT=1
+      - PYPI_USERNAME=$PYPI_USERNAME
+      - PYPI_PASSWORD=$PYPI_PASSWORD
     build:
       args:
         - PYPI_USERNAME=$PYPI_USERNAME
         - PYPI_PASSWORD=$PYPI_PASSWORD
       context: .
-    command: echo 'Hello {{ cookiecutter.service_slug }}'
-    environment:
-      - PIPENV_VENV_IN_PROJECT=1
-      - PYPI_USERNAME=$PYPI_USERNAME
-      - PYPI_PASSWORD=$PYPI_PASSWORD
-    image: '{{ cookiecutter.service_name }}'
+    ports:
+      - '5000:5000'
+    links:
+      - db
+    depends_on:
+      - db
+    image: 'zebuker/{{ cookiecutter.service_slug }}-app'
     volumes:
       - .:/var/task
+      - venv-pricing:/var/task/.venv/
+    networks:
+      - zebuker
+volumes:
+  venv-pricing:

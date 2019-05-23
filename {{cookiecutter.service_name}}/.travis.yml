@@ -1,20 +1,36 @@
+# set the environment
 sudo: required
 dist: trusty
 language: python
 python:
-- '3.6'
+  - "3.6"
 services:
   - docker
+env:
+  global:
+    - PIPENV_VENV_IN_PROJECT=1
+    - PIPENV_IGNORE_VIRTUALENVS=1
+
+# cache node modules for efficiency
+cache:
+  directories:
+    - node_modules
+
 before_install:
-  - sudo apt-get update
+  - sudo apt-get update # update apt-get
+  - sudo apt-get install zip # install zip
+  - sudo apt-get install jq # install jq for parsing ssm responses
+  - docker-compose pull --ignore-pull-failures
   - docker-compose build
+  - npm install -g swagger-cli # install swagger validator
+
+# disable services enabled by default
+before_script:
+  - sudo service postgresql stop
+  - sudo service mysql stop
+
+# build commands
 script:
-  - docker-compose run '{{ cookiecutter.service_name }}'
-deploy:
-  provider: script
-  script: >-
-    mkdir ~/.aws &&
-    touch ~/.aws/credentials && echo "[zeel/PyPICloud]\naws_access_key_id = $PYPI_BUCKET_ACCESS_KEY_ID\naws_secret_access_key = $PYPI_BUCKET_SECRET_ACCESS_KEY" > ~/.aws/credentials &&
-    s3pypi --bucket pypi.zeel.com --profile zeel/PyPICloud
-  on:
-    branch: master
+  # validate the swagger file
+  # - swagger-cli validate {{cookiecutter.service_slug}}/swagger/{{cookiecutter.service_slug}}_api.yml
+  - docker-compose run --name travis-{{cookiecutter.service_slug}}-app {{cookiecutter.service_slug}}-app bash test.sh # Unit tests
