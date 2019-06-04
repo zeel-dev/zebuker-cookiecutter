@@ -1,34 +1,67 @@
-"""A Flask-SQLAlchemy database with a custom column type"""
+"""Database definitions and extensions, including the flask-sqlalchemy instance
 
-from flask_sqlalchemy import sqlalchemy
+TODO - We probably want to alias all sqlalchemy definitions that we will be
+using in our models. As it stands, we *can* import Type, relationship and
+Column definitions directly from sqlalchemy but there is no real reason to
+not import from the flask-sqlalchemy instance.
+"""
+from random import choices
+from datetime import datetime
+import string
 
-from sqlalchemy_utils.functions import database_exists, create_database
+from {{ cookiecutter.service_slug }} import db
+from sqlalchemy import DateTime
 
-from {{ cookiecutter.service_slug }} import alchemy
-
-# import all modules here that might define models so that
-# they will be registered properly on the metadata.
-from {{ cookiecutter.service_slug }}.models import Base
-
-db = alchemy
-
-
-def setup_database(flask_app):
-    with flask_app.app_context():
-
-        engine = sqlalchemy.create_engine(
-            flask_app.config['SQLALCHEMY_DATABASE_URI']
-        )
-        if not database_exists(engine.url):
-            create_database(engine.url)
-
-        create_tables()
-        return True
+# Alias common SQLAlchemy names
+Column = db.Column
+Model = db.Model
 
 
-def create_tables():
-    Base.metadata.create_all(bind=db.engine)
+def rand_string_id(length):
+    """Return a randomly generated string of Uppercase letters and digits
+
+    Parameters
+    ----------
+    length : int
+        Desired length of the random string
+    """
+    return ''.join(choices(string.ascii_uppercase + string.digits, k=length))
 
 
-def drop_tables():
-    Base.metadata.drop_all(bind=db.engine)
+class CrudMixin(object):
+    """Mixin that adds convenience methods for CRUD"""
+
+    @classmethod
+    def create(cls, **kwargs):
+        """Create a new record and save it the database."""
+        instance = cls(**kwargs)
+        return instance.save()
+
+    def update(self, commit=True, **kwargs):
+        """Update specific fields of a record."""
+        for attr, value in kwargs.items():
+            setattr(self, attr, value)
+        return commit and self.save() or self
+
+    def save(self, commit=True):
+        """Save the record."""
+        db.session.add(self)
+        if commit:
+            db.session.commit()
+        return self
+
+    def delete(self, commit=True):
+        """Remove the record from the database."""
+        db.session.delete(self)
+        return commit and db.session.commit()
+
+
+class TimestampMixin(object):
+    """Class to add timestamp fields to tables"""
+
+    inserted = Column(DateTime, default=datetime.utcnow)
+    updated = Column(
+        DateTime,
+        default=datetime.utcnow,
+        onupdate=datetime.utcnow
+    )

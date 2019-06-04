@@ -3,8 +3,7 @@ networks:
   zebuker:
 services:
   db:
-    image: postgres
-    restart: always
+    image: mdillon/postgis
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root
